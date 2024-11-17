@@ -1,0 +1,32 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+.item:hover{
+  box-shadow: 0px 0px 5px 0.5px rgb(29, 129, 243);
+}
+button{
+  transition: 0.3s !important;
+}
+button:hover{
+  opacity: 0.7;
+}
+
+.home {
+  height: 100vh;
+}
+
+#form-parent , #delete-form-parent , #update-form-parent{
+  position: fixed;
+  height: 100%;
+  top: 0;
+  background-color: rgba(52, 55, 58, 0.548);
+  display: none;
+  color: rgba(0, 255, 115, 0.705) ;
+  transition:  1s !important;
+}
+
+

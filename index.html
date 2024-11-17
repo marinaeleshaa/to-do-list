@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/all.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css
+  "
+    />
+  </head>
+  <body class="bg-dark position-relative">
+    <!-- task -->
+    <div
+      class="container-fluid pt-5 d-flex justify-content-center align-items-start home text-capitalize"
+    >
+      <div class="rounded-top-5 col-11 col-md-8 col-xl-6">
+        <!-- head -->
+        <div
+          class="text-center p-2 d-flex justify-content-center align-items-center rounded-top-5 bg-primary"
+        >
+          <p class="m-0 fw-bold flex-grow-1 text-white fs-4">tasks</p>
+          <button
+            class="btn bg-white text-primary rounded-circle fw-bold"
+            onclick="takeNewTask()"
+          >
+            <i class="fa-solid fa-plus fs-5"></i>
+          </button>
+        </div>
+        <!-- body -->
+        <div
+          class="p-4 bg-white text-capitalize row-gap-4 row w-100 m-0"
+          id="tasks"
+        >
+          <!-- item  -->
+          <div
+            class="d-flex justify-content-center align-items-center border-primary border-bottom border-2 rounded-5 p-2 item flex-sm-row flex-column-reverse"
+          >
+            <!-- right -->
+            <div
+              class="d-flex justify-content-center align-items-end p-2 flex-column flex-grow-1 text-primary"
+            >
+              <h4>read book</h4>
+              <p class="m-0">
+                22/11/2024 <i class="fa-solid fa-calendar-days"></i>
+              </p>
+            </div>
+            <!-- left -->
+            <div
+              class="d-flex justify-content-center col-4 column-gap-3 justify-content-lg-evenly"
+            >
+              <button class="btn bg-primary text-white rounded-circle">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+              <button class="btn bg-success text-white rounded-circle">
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button class="btn bg-danger text-white rounded-circle delete">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- add form -->
+    <div
+      class="container-fluid justify-content-center align-items-center"
+      id="form-parent"
+    >
+      <div
+        class="container bg-white d-flex justify-content-center align-items-center flex-column p-0 rounded-5 text-capitalize col-sm-8 col-md-6 col-lg-4 col-10"
+      >
+        <!-- head -->
+        <div
+          class="bg-primary w-100 rounded-top-5 d-flex align-items-center justify-content-between"
+          style="height: 50px"
+        >
+          <h4 class="text-white flex-grow-1 text-center">add task</h4>
+          <button class="btn" id="close" onclick="closeForm()">
+            <i class="fa-solid fa-circle-xmark text-white fs-4"></i>
+          </button>
+        </div>
+        <!-- body -->
+        <div class="input-group p-5 rounded-5">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="what is your next task ?"
+            aria-label="what is your next task"
+            aria-describedby="add-task"
+            id="task_name"
+          />
+          <button
+            class="btn bg-primary text-white"
+            type="button"
+            id="add-task"
+            onclick="closeForm()"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- delete form -->
+    <div
+      class="container-fluid justify-content-center align-items-center"
+      id="delete-form-parent"
+    >
+      <div
+        class="container  bg-white d-flex justify-content-center align-items-center flex-column p-0 rounded-5 text-capitalize col-sm-8 col-md-6 col-lg-3 col-10"
+      >
+        <!-- head -->
+        <div
+          class="bg-primary w-100 rounded-top-5 d-flex align-items-center justify-content-end"
+          style="height: 50px"
+        >
+          <button class="btn" id="close" onclick="closeForm()">
+            <i class="fa-solid fa-circle-xmark text-white fs-4"></i>
+          </button>
+        </div>
+        <!-- body -->
+        <div id="msg1" class="text-primary pt-5 fs-5 px-3"></div>
+        <div class="input-group p-5 rounded-5 d-flex justify-content-end column-gap-3">
+          <button
+            class="btn bg-primary text-white rounded-5"
+            type="button"
+            id="cancel"
+            onclick="closeForm()"
+          >
+            cancel
+          </button>
+          <button
+            class="btn bg-danger text-white rounded-5"
+            type="button"
+            id="delete-task"
+            onclick="closeForm()"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- update form -->
+    <div
+      class="container-fluid justify-content-center align-items-center"
+      id="update-form-parent"
+    >
+      <div
+        class="container bg-white d-flex justify-content-center align-items-center flex-column p-0 rounded-5 text-capitalize col-sm-8 col-md-6 col-lg-3 col-10 "
+      >
+        <!-- head -->
+        <div
+          class="bg-primary w-100 rounded-top-5 d-flex align-items-center justify-content-end"
+          style="height: 50px"
+        >
+          <!-- <h4 class="text-white flex-grow-1 text-center ">delete task</h4> -->
+          <button class="btn" id="close" onclick="closeForm()">
+            <i class="fa-solid fa-circle-xmark text-white fs-4"></i>
+          </button>
+        </div>
+        <!-- body -->
+        <div id="msg2" class="text-primary pt-5 fs-5 px-3"></div>
+        <div>
+          <input
+            type="text"
+            class="form-control mt-3"
+            id="update-value"
+            required
+          />
+        </div>
+        <div class="input-group p-3 rounded-5 d-flex justify-content-end column-gap-3">
+          <button
+            class="btn bg-primary text-white rounded-5"
+            type="button"
+            id="cancel"
+            onclick="closeForm()"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn bg-success text-white rounded-5"
+            type="button"
+            id="update-task"
+            onclick="closeForm()"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js
+  "></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
