@@ -46,6 +46,8 @@ let tasks = [
   }
 ];
 
+tasks = JSON.parse(localStorage.getItem("tasks"));
+
 function fillTasks() {
   tasks_div.innerHTML = "";
   let index = 0;
@@ -88,11 +90,13 @@ function fillTasks() {
 }
 
 fillTasks();
+
+// ==================add task=======================
 add_btn.addEventListener("click", function () {
   let now = new Date();
   let creationDate =
     now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear();
-  let creationTime = now.getHours() - 12 + ":" + now.getMinutes();
+  let creationTime = now.getHours() + ":" + now.getMinutes();
   let taskObj = {
     title: title_value.value,
     date: creationDate,
@@ -100,10 +104,12 @@ add_btn.addEventListener("click", function () {
     isDone: false
   };
   tasks.push(taskObj);
+  storage()
   title_value.value = "";
   fillTasks();
 });
 
+// ==================delete task==========================
 function deleteTask(index) {
   document.getElementById(
     "msg1"
@@ -111,11 +117,13 @@ function deleteTask(index) {
   delete_form.style.display = "flex";
   delete_task.onclick = function () {
     tasks.splice(index, 1);
+    storage()
     fillTasks();
     delete_form.style.display = "none";
   };
 }
 
+// ==================update task===========================
 function updateTask(index) {
   update_form.style.display = "flex";
   document.getElementById(
@@ -124,13 +132,21 @@ function updateTask(index) {
   update_btn.onclick = function () {
     tasks[index].title = `${update_value.value}`;
     update_form.style.display = "none";
+    storage
     fillTasks();
   };
 }
 
-var items = document.querySelectorAll(".item");
-var icons = document.querySelectorAll(".icon");
+// ===============done task========================
 function doneTask(index) {
   tasks[index].isDone = !tasks[index].isDone;
+  storage()
   fillTasks();
+}
+
+// ================local storage========================
+
+function storage() {
+  let tasksString = JSON.stringify(tasks);
+  localStorage.setItem("tasks", tasksString);
 }
