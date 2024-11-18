@@ -58,9 +58,7 @@ function fillTasks() {
   for (task of tasks) {
     let content = `
           <div
-            class="d-flex justify-content-center align-items-center border-primary border-bottom border-2 rounded-5 p-2 item flex-sm-row flex-column ${
-              task.isDone ? "done" : ""
-            } "
+            class="d-flex justify-content-center align-items-center border-primary border-bottom border-2 rounded-5 p-2 item flex-sm-row flex-column ${task.isDone ? "done" : ""} "
           >
           <!-- right -->
             <div
@@ -81,7 +79,7 @@ function fillTasks() {
                 <i class="fa-solid fa-pen" ></i>
               </button>
               <button class="btn bg-success text-white rounded-circle " onclick="doneTask(${index})">
-                <i class="fa-solid fa-check icon"></i>
+                <i class="fa-solid  ${task.isDone ? "fa-rotate-left" : "fa-check icon"}"></i>
               </button>
               <button class="btn bg-danger text-white rounded-circle delete" onclick="deleteTask(${index})">
                 <i class="fa-solid fa-trash"></i>
@@ -92,7 +90,6 @@ function fillTasks() {
     index++;
   }
 }
-
 fillTasks();
 
 // ==================add task=======================
