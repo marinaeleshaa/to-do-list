@@ -29,3 +29,7 @@ button:hover{
 .done{
   background-color: rgba(0, 255, 115, 0.705);
 }
+
+input::placeholder {
+  color: rgb(29, 129, 243) !important;
+}
