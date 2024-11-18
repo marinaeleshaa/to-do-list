@@ -20,45 +20,54 @@ function closeForm() {
 }
 
 let tasks = [
-  {
-    title: "read book",
-    date: "15/10/2024",
-    time: "22:15",
-    isDone: false
-  },
-  {
-    title: "end the project",
-    date: "15/10/2024",
-    time: "22:15",
-    isDone: false
-  },
-  {
-    title: "end js course",
-    date: "15/10/2024",
-    time: "22:15",
-    isDone: false
-  },
-  {
-    title: "task done",
-    date: "15/10/2024",
-    time: "22:15",
-    isDone: false
-  }
+  // {
+  //   title: "read book",
+  //   date: "15/10/2024",
+  //   time: "22:15",
+  //   isDone: false
+  // },
+  // {
+  //   title: "end the project",
+  //   date: "15/10/2024",
+  //   time: "22:15",
+  //   isDone: false
+  // },
+  // {
+  //   title: "end js course",
+  //   date: "15/10/2024",
+  //   time: "22:15",
+  //   isDone: false
+  // },
+  // {
+  //   title: "task done",
+  //   date: "15/10/2024",
+  //   time: "22:15",
+  //   isDone: false
+  // }
 ];
 
-function getTasks(){
+function getTasks() {
   var retrived_tasks = JSON.parse(localStorage.getItem("tasks"));
-tasks = retrived_tasks ?? []
+  tasks = retrived_tasks ?? [];
 }
-getTasks()
+getTasks();
 
 function fillTasks() {
   tasks_div.innerHTML = "";
+  if (tasks.length != 0) {
+    document.getElementById("text").style.display = "none"
+  } else {
+    document.getElementById("text").style.display = "flex"
+  }
+
   let index = 0;
   for (task of tasks) {
+    tasks_div.innerHTML = "";
     let content = `
           <div
-            class="d-flex justify-content-center align-items-center border-primary border-bottom border-2 rounded-5 p-2 item flex-sm-row flex-column ${task.isDone ? "done" : ""} "
+            class="d-flex justify-content-center align-items-center border-primary border-bottom border-2 rounded-5 p-2 item flex-sm-row flex-column ${
+              task.isDone ? "done" : ""
+            } "
           >
           <!-- right -->
             <div
@@ -79,7 +88,9 @@ function fillTasks() {
                 <i class="fa-solid fa-pen" ></i>
               </button>
               <button class="btn bg-success text-white rounded-circle " onclick="doneTask(${index})">
-                <i class="fa-solid  ${task.isDone ? "fa-rotate-left" : "fa-check icon"}"></i>
+                <i class="fa-solid  ${
+                  task.isDone ? "fa-rotate-left" : "fa-check icon"
+                }"></i>
               </button>
               <button class="btn bg-danger text-white rounded-circle delete" onclick="deleteTask(${index})">
                 <i class="fa-solid fa-trash"></i>
@@ -105,7 +116,7 @@ add_btn.addEventListener("click", function () {
     isDone: false
   };
   tasks.push(taskObj);
-  storage()
+  storage();
   title_value.value = "";
   fillTasks();
 });
@@ -118,7 +129,7 @@ function deleteTask(index) {
   delete_form.style.display = "flex";
   delete_task.onclick = function () {
     tasks.splice(index, 1);
-    storage()
+    storage();
     fillTasks();
     delete_form.style.display = "none";
   };
@@ -133,7 +144,7 @@ function updateTask(index) {
   update_btn.onclick = function () {
     tasks[index].title = `${update_value.value}`;
     update_form.style.display = "none";
-    storage
+    storage;
     fillTasks();
   };
 }
@@ -141,7 +152,7 @@ function updateTask(index) {
 // ===============done task========================
 function doneTask(index) {
   tasks[index].isDone = !tasks[index].isDone;
-  storage()
+  storage();
   fillTasks();
 }
 
