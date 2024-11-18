@@ -15,9 +15,7 @@ button:hover{
   opacity: 0.7;
 }
 
-.home {
-  height: 100vh;
-}
+
 
 #form-parent , #delete-form-parent , #update-form-parent{
   position: fixed;
@@ -25,8 +23,9 @@ button:hover{
   top: 0;
   background-color: rgba(52, 55, 58, 0.548);
   display: none;
-  color: rgba(0, 255, 115, 0.705) ;
   transition:  1s !important;
 }
 
-
+.done{
+  background-color: rgba(0, 255, 115, 0.705);
+}

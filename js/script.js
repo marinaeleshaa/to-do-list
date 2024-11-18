@@ -52,7 +52,9 @@ function fillTasks() {
   for (task of tasks) {
     let content = `
           <div
-            class="d-flex justify-content-center align-items-center border-primary border-bottom border-2 rounded-5 p-2 item flex-sm-row flex-column "
+            class="d-flex justify-content-center align-items-center border-primary border-bottom border-2 rounded-5 p-2 item flex-sm-row flex-column ${
+              task.isDone ? "done" : ""
+            } "
           >
           <!-- right -->
             <div
@@ -60,7 +62,9 @@ function fillTasks() {
             >
               <h4>${task.title}</h4>
               <p class="m-0">
-                ${task.date} <i class="fa-solid fa-calendar-days me-2"></i> ${task.time} <i class="fa-regular fa-clock"></i>
+                ${task.date} <i class="fa-solid fa-calendar-days me-2"></i> ${
+      task.time
+    } <i class="fa-regular fa-clock"></i>
               </p>
             </div>
             <!-- left -->
@@ -127,16 +131,6 @@ function updateTask(index) {
 var items = document.querySelectorAll(".item");
 var icons = document.querySelectorAll(".icon");
 function doneTask(index) {
-  const task = tasks[index];
-  const clickedItem = items[index];
-  var icon = icons[index];
-  if (!task.isDone) {
-    clickedItem.style.background = "rgba(0, 255, 115, 0.705)";
-    task.isDone = true;
-    icon.className = "fa-solid fa-circle-xmark";
-  } else {
-    clickedItem.style.background = "white";
-    task.isDone = false;
-    icon.className = "fa-solid fa-check";
-  }
+  tasks[index].isDone = !tasks[index].isDone;
+  fillTasks();
 }
