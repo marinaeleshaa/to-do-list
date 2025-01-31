@@ -54,15 +54,14 @@ getTasks();
 
 function fillTasks() {
   tasks_div.innerHTML = "";
-  if (tasks.length != 0) {
-    document.getElementById("text").style.display = "none"
+  if (tasks.length) {
+    document.getElementById("text").style.display = "none";
   } else {
-    document.getElementById("text").style.display = "flex"
+    document.getElementById("text").style.display = "flex";
   }
 
   let index = 0;
   for (task of tasks) {
-    tasks_div.innerHTML = "";
     let content = `
           <div
             class="d-flex justify-content-center align-items-center border-primary border-bottom border-2 rounded-5 p-2 item flex-sm-row flex-column ${
