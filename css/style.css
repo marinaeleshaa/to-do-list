@@ -27,7 +27,8 @@ button:hover{
 }
 
 .done{
-  background-color: rgba(0, 255, 115, 0.705);
+  background-color: rgba(0, 255, 115, 0.297);
+  border: 0 !important;
 }
 
 input::placeholder {
