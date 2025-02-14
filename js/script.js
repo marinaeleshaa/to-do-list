@@ -64,7 +64,7 @@ function fillTasks() {
   for (task of tasks) {
     let content = `
           <div
-            class="d-flex justify-content-center align-items-center border-primary border-bottom border-2 rounded-5 p-2 item flex-sm-row flex-column ${
+            class="d-flex justify-content-center align-items-center border-primary-subtle border border-2 rounded-5 p-2 item flex-sm-row flex-column ${
               task.isDone ? "done" : ""
             } "
           >
