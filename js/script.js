@@ -8,6 +8,7 @@ var delete_task = document.getElementById("delete-task");
 var update_form = document.getElementById("update-form-parent");
 var update_value = document.getElementById("update-value");
 var update_btn = document.getElementById("update-task");
+var delete_all_btn = document.getElementById("delete-all");
 
 function takeNewTask() {
   form.style.display = "flex";
@@ -56,8 +57,10 @@ function fillTasks() {
   tasks_div.innerHTML = "";
   if (tasks.length) {
     document.getElementById("text").style.display = "none";
+    delete_all_btn.style.display = "inline-block";
   } else {
     document.getElementById("text").style.display = "flex";
+    delete_all_btn.style.display = "none";
   }
 
   let index = 0;
@@ -112,7 +115,7 @@ add_btn.addEventListener("click", function () {
     title: title_value.value,
     date: creationDate,
     time: creationTime,
-    isDone: false
+    isDone: false,
   };
   tasks.push(taskObj);
   storage();
@@ -161,3 +164,11 @@ function storage() {
   let tasksString = JSON.stringify(tasks);
   localStorage.setItem("tasks", tasksString);
 }
+
+// =====================delete all tasks=====================
+
+delete_all_btn.addEventListener('click',()=>{
+  tasks =[]
+  storage()
+  fillTasks()
+})
