@@ -58,9 +58,11 @@ function fillTasks() {
   if (tasks.length) {
     document.getElementById("text").style.display = "none";
     delete_all_btn.style.display = "inline-block";
+
   } else {
     document.getElementById("text").style.display = "flex";
     delete_all_btn.style.display = "none";
+
   }
 
   let index = 0;
@@ -167,8 +169,8 @@ function storage() {
 
 // =====================delete all tasks=====================
 
-delete_all_btn.addEventListener('click',()=>{
-  tasks =[]
-  storage()
-  fillTasks()
-})
+delete_all_btn.addEventListener("click", () => {
+  tasks = [];
+  storage();
+  fillTasks();
+});
