@@ -19,7 +19,7 @@ button:hover{
 
 #form-parent , #delete-form-parent , #update-form-parent{
   position: fixed;
-  height: 100%;
+  height: 100vh;
   top: 0;
   background-color: rgba(52, 55, 58, 0.548);
   display: none;
