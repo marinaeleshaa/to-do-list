@@ -69,13 +69,13 @@ function fillTasks() {
   for (task of tasks) {
     let content = `
           <div
-            class="d-flex justify-content-center align-items-center border-primary-subtle border border-2 rounded-5 p-2 item flex-sm-row flex-column ${
-              task.isDone ? "done" : ""
-            } "
+            class="d-flex justify-content-center align-items-center  rounded-5 p-2 item flex-sm-row flex-column ${
+              task.isDone ? "bg-success-subtle border border-success" : ""
+            } ${task.isDone?'':'border-primary-subtle border border-2 '}"
           >
           <!-- right -->
             <div
-              class="d-flex justify-content-center align-items-sm-start p-2 flex-column flex-grow-1 text-primary align-items-center"
+              class="d-flex justify-content-center align-items-sm-start p-2 flex-column flex-grow-1  align-items-center text-primary"
             >
               <h4>${task.title}</h4>
               <p class="m-0">

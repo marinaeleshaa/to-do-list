@@ -13,12 +13,12 @@
     />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
   </head>
-  <body class="bg-dark position-relative">
+  <body class=" position-relative" style="background-image: url(img/cute.jpg); ">
     <!-- task -->
     <div
-      class="container-fluid py-5 d-flex justify-content-center text-capitalize"
+      class="container-fluid py-5 d-flex justify-content-center text-capitalize "
     >
-      <div class="rounded-top-5 col-11 col-md-8 col-xl-6">
+      <div class="rounded-top-5 col-11 col-md-8 col-xl-6 ">
         <!-- head -->
         <div
           class="text-center p-2 d-flex justify-content-between align-items-center rounded-top-5 bg-primary"
@@ -48,7 +48,7 @@
         </div>
         <!-- body -->
         <div
-          class="p-4 bg-white text-capitalize row-gap-4 row w-100 m-0 rounded-bottom-5"
+          class="p-4 bg-white text-capitalize row-gap-4 row w-100 m-0 rounded-bottom-5 shadow-lg"
           id="tasks"
         >
           <!-- item  -->
@@ -102,23 +102,27 @@
           </button>
         </div>
         <!-- body -->
-        <div class="input-group p-5 rounded-5">
-          <input
-            type="text"
-            class="form-control text-primary"
-            placeholder="what is your next task ?"
-            aria-label="what is your next task"
-            aria-describedby="add-task"
-            id="task_name"
-          />
-          <button
-            class="btn bg-primary text-white"
-            type="button"
-            id="add-task"
-            onclick="closeForm()"
-          >
-            Add
-          </button>
+        <div class="input-group p-3 pb-5 px-md-5  rounded-5 d-flex flex-column">
+          <p class="fs-4 text-center text-primary m-0 py-4">what is your next task ?</p>
+          <div class="d-flex">
+
+            <input
+              type="text"
+              class="form-control text-primary border-primary-subtle rounded-end-0 text-capitalize"
+              placeholder="add new task"
+              aria-label="what is your next task"
+              aria-describedby="add-task"
+              id="task_name"
+            />
+            <button
+              class="btn bg-success  text-white rounded-start-0"
+              type="button"
+              id="add-task"
+              onclick="closeForm()"
+            >
+              Add
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -141,12 +145,12 @@
           </button>
         </div>
         <!-- body -->
-        <div id="msg1" class="text-primary pt-5 fs-5 px-3"></div>
+        <div id="msg1" class="text-primary pt-5 fs-5 px-3 text-center"></div>
         <div
-          class="input-group p-5 rounded-5 d-flex justify-content-center column-gap-3 justify-content-md-end"
+          class="input-group py-5 px-3 px-md-5 rounded-5 d-flex justify-content-between "
         >
           <button
-            class="btn bg-primary text-white rounded-5"
+            class="btn bg-primary text-white rounded-5 col-5"
             type="button"
             id="cancel"
             onclick="closeForm()"
@@ -154,7 +158,7 @@
             cancel
           </button>
           <button
-            class="btn bg-danger text-white rounded-5"
+            class="btn bg-danger text-white rounded-5 col-5 "
             type="button"
             id="delete-task"
             onclick="closeForm()"
@@ -184,20 +188,21 @@
           </button>
         </div>
         <!-- body -->
-        <div id="msg2" class="text-primary pt-5 fs-5 px-3"></div>
+        <div id="msg2" class="text-primary py-4  fs-5 px-3 text-center"></div>
         <div>
           <input
             type="text"
-            class="form-control mt-3 text-primary"
+            class="form-control  text-primary border-primary-subtle text-capitalize"
             id="update-value"
+            placeholder="add new name"
             required
           />
         </div>
         <div
-          class="input-group p-3 rounded-5 d-flex justify-content-center column-gap-3 justify-content-md-end"
+          class="input-group px-3 py-4 px-md-5 rounded-5 d-flex justify-content-between "
         >
           <button
-            class="btn bg-primary text-white rounded-5"
+            class="btn bg-primary text-white rounded-5 col-5"
             type="button"
             id="cancel"
             onclick="closeForm()"
@@ -205,7 +210,7 @@
             Cancel
           </button>
           <button
-            class="btn bg-success text-white rounded-5"
+            class="btn bg-success text-white rounded-5 col-5"
             type="button"
             id="update-task"
             onclick="closeForm()"
