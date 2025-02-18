@@ -4,6 +4,7 @@ var title_value = document.getElementById("task_name");
 var add_btn = document.getElementById("add-task");
 var delete_btn = document.querySelectorAll(".delete");
 var delete_form = document.getElementById("delete-form-parent");
+var delete_all_form = document.getElementById("delete-all-form-parent");
 var delete_task = document.getElementById("delete-task");
 var update_form = document.getElementById("update-form-parent");
 var update_value = document.getElementById("update-value");
@@ -18,6 +19,7 @@ function closeForm() {
   form.style.display = "none";
   delete_form.style.display = "none";
   update_form.style.display = "none";
+  delete_all_form.style.display = "none";
 }
 
 let tasks = [
@@ -58,11 +60,11 @@ function fillTasks() {
   if (tasks.length) {
     document.getElementById("text").style.display = "none";
     delete_all_btn.style.display = "inline-block";
-
+    tasks_div.classList.add("p-2", "p-md-3");
   } else {
+    tasks_div.classList.remove("p-2", "p-md-3");
     document.getElementById("text").style.display = "flex";
     delete_all_btn.style.display = "none";
-
   }
 
   let index = 0;
@@ -71,7 +73,7 @@ function fillTasks() {
           <div
             class="d-flex justify-content-center align-items-center  rounded-5 p-2 item flex-sm-row flex-column ${
               task.isDone ? "bg-success-subtle border border-success" : ""
-            } ${task.isDone?'':'border-primary-subtle border border-2 '}"
+            } ${task.isDone ? "" : "border-primary-subtle border border-2 "}"
           >
           <!-- right -->
             <div
@@ -113,6 +115,11 @@ add_btn.addEventListener("click", function () {
   let creationDate =
     now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear();
   let creationTime = now.getHours() + ":" + now.getMinutes();
+  if (!title_value.value.trim()) {
+    document.getElementById("empty-name").innerHTML =
+      "must add a name to your task";
+    return;
+  }
   let taskObj = {
     title: title_value.value,
     date: creationDate,
@@ -123,6 +130,8 @@ add_btn.addEventListener("click", function () {
   storage();
   title_value.value = "";
   fillTasks();
+  document.getElementById("empty-name").innerHTML = "";
+  closeForm();
 });
 
 // ==================delete task==========================
@@ -146,10 +155,18 @@ function updateTask(index) {
     "msg2"
   ).innerHTML = `do you want to update ${tasks[index].title} ?`;
   update_btn.onclick = function () {
+    if (!update_value.value.trim()) {
+      document.getElementById("update-error").innerHTML =
+        "must add a name to your task";
+      return;
+    }
     tasks[index].title = `${update_value.value}`;
     update_form.style.display = "none";
-    storage;
+    storage();
     fillTasks();
+    update_value.value = "";
+    document.getElementById("update-error").innerHTML = "";
+    closeForm();
   };
 }
 
@@ -170,7 +187,13 @@ function storage() {
 // =====================delete all tasks=====================
 
 delete_all_btn.addEventListener("click", () => {
-  tasks = [];
-  storage();
-  fillTasks();
+  delete_all_form.style.display = "flex";
+  const msgElement = document.getElementById("msg3");
+  msgElement.innerHTML = `Do you want to delete all tasks?`;
+  document.getElementById("delete-all-task").onclick = () => {
+    tasks = [];
+    storage();
+    fillTasks();
+    closeForm();
+  };
 });
