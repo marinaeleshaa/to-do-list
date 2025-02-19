@@ -10,6 +10,10 @@ var update_form = document.getElementById("update-form-parent");
 var update_value = document.getElementById("update-value");
 var update_btn = document.getElementById("update-task");
 var delete_all_btn = document.getElementById("delete-all");
+var getUserName = document.getElementById("getUserName");
+var nameInput = document.getElementById("nameInput");
+var addNameBtn = document.getElementById("add-name-btn");
+var addUserBtn = document.getElementById("addUserBtn");
 
 function takeNewTask() {
   form.style.display = "flex";
@@ -20,6 +24,7 @@ function closeForm() {
   delete_form.style.display = "none";
   update_form.style.display = "none";
   delete_all_form.style.display = "none";
+  getUserName.style.display = "none";
 }
 
 let tasks = [
@@ -177,12 +182,7 @@ function doneTask(index) {
   fillTasks();
 }
 
-// ================local storage========================
 
-function storage() {
-  let tasksString = JSON.stringify(tasks);
-  localStorage.setItem("tasks", tasksString);
-}
 
 // =====================delete all tasks=====================
 
@@ -197,3 +197,64 @@ delete_all_btn.addEventListener("click", () => {
     closeForm();
   };
 });
+// =========================get the name=======================
+
+let userName = "";
+
+// Retrieve stored username from localStorage
+function getName() {
+  let retrievedName = localStorage.getItem("userName"); // Get stored name
+  userName = retrievedName ? JSON.parse(retrievedName) : "user"; // Default to "user" if null
+}
+
+// Call getName() first to ensure userName is set
+getName(); 
+
+// Display welcome message with stored name
+document.getElementById("welcomeMsg").innerHTML = `Welcome, ${userName}❤️ Stay focused and succeed 😉👌`;
+
+document.getElementById("msg4").innerHTML = "I'm so happy to know your name😍";
+
+// Show input form
+addUserBtn.addEventListener("click", () => {
+  getUserName.style.display = "flex";
+});
+
+// Handle name input changes
+nameInput.addEventListener("change", () => {
+  let newName = nameInput.value.trim();
+
+  if (newName && newName !== userName) {
+    document.getElementById("name-error").innerHTML = ""; // Clear error if valid
+  }
+});
+
+// Handle name submission
+addNameBtn.addEventListener("click", () => {
+  let newName = nameInput.value.trim();
+
+  if (!newName || newName === "user") {
+    document.getElementById("name-error").innerHTML = "Add Your Name!";
+    return;
+  }
+  if (newName === userName) {
+    document.getElementById("name-error").innerHTML = "Add a Different Name!";
+    return;
+  }
+
+  // Update username and save to localStorage
+  userName = newName;
+  localStorage.setItem("userName", JSON.stringify(userName)); // Save updated name
+
+  // Update welcome message
+  document.getElementById("welcomeMsg").innerHTML = `Welcome, ${userName}❤️ Stay focused and succeed 😉👌`;
+
+  nameInput.value = ""; // Clear input
+  closeForm();
+});
+
+// Save tasks to localStorage
+function storage() {
+  let tasksString = JSON.stringify(tasks);
+  localStorage.setItem("tasks", tasksString);
+}

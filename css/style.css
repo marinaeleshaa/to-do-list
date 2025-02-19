@@ -27,7 +27,14 @@ button:hover{
   transition:  1s !important;
 }
 
-
+#getUserName{
+  position: fixed;
+  height: 100%;
+  top: 0;
+  background-color: rgba(52, 55, 58, 0.548);
+  transition:  1s !important;
+  display: none;
+}
 
 
 input::placeholder {
